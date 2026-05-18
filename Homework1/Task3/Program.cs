@@ -1,4 +1,9 @@
-﻿namespace Task3;
+﻿// Task 3:
+// This program implements a custom integer list using an internal int[] array.
+// The list supports Add, AddRange, Remove, TryGet,
+// dynamic resizing, and additional helper methods.
+
+namespace Task3;
 
 class Program
 {

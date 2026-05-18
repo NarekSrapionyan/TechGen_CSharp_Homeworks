@@ -1,4 +1,10 @@
-﻿using System.Text;
+﻿// Task 2:
+// This program demonstrates integer overflow and implements custom arithmetic
+// for very large numbers stored as strings.
+// The solution supports addition, subtraction, multiplication,
+// input validation, and negative numbers without using BigInteger or Convert.*.
+
+using System.Text;
 
 namespace Task2;
 
