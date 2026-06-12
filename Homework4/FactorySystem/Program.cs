@@ -1,9 +1,10 @@
 ﻿namespace Task1;
-
+using FactorySystem.Components;
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Simulation simulation = new Simulation();
+        simulation.Start();    
     }
 }
