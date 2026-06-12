@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project", "Project\Project.csproj", "{6BAAFE0E-21E5-434E-84B6-B388103CFFF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactorySystem", "FactorySystem\FactorySystem.csproj", "{6BAAFE0E-21E5-434E-84B6-B388103CFFF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
