@@ -1,4 +1,4 @@
-# 📦 Homework 6 — Generics & Generic Programming in C#
+# 📦 Generics & Generic Programming in C#
 
 ## 📖 Description
 
