@@ -1,9 +1,11 @@
-﻿namespace Task1;
+﻿using Task1.SpecificationDemo;
+
+namespace Task1;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        SpecificationDemo.Run();
     }
 }
