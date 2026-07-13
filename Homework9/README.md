@@ -1,6 +1,6 @@
 # 📂 Homework 9 — File I/O, Streams & Serialization in C#
 
-This project contains solutions for Homework 8 focused on **File Input/Output**, **Streams**, and **Text Processing** in C#.
+This project contains solutions for Homework 9 focused on **File Input/Output**, **Streams**, and **Text Processing** in C#.
 
 The goal of these exercises is to understand how .NET works with files, directories, streams, text encoding, and binary data while following good programming practices.
 
