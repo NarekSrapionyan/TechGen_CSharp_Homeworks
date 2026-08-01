@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceEngineWrapper", "PriceEngineWrapper\PriceEngineWrapper.csproj", "{61C6C55D-8FEA-4AB0-9979-834393D44F95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceEngineConsole", "PriceEngineConsole\PriceEngineConsole.csproj", "{05707DD3-0341-4950-9945-E0E8D2424F40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61C6C55D-8FEA-4AB0-9979-834393D44F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C6C55D-8FEA-4AB0-9979-834393D44F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C6C55D-8FEA-4AB0-9979-834393D44F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C6C55D-8FEA-4AB0-9979-834393D44F95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05707DD3-0341-4950-9945-E0E8D2424F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05707DD3-0341-4950-9945-E0E8D2424F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05707DD3-0341-4950-9945-E0E8D2424F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05707DD3-0341-4950-9945-E0E8D2424F40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
