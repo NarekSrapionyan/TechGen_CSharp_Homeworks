@@ -24,6 +24,16 @@ class Program
             FindBookTwice(db);
             GetUnreadBooksTotalPrice(db);
             SearchAuthors(db);
+            
+            MarkBookAsRead(db);
+            DeleteBook(db);
+            
+            TestLocalDateTime(db);
+            ShowCreateScript(db);
+            GroupBooksByAuthor(db);
+            
+            ShowQueryString(db);
+            CompareTracking(db);
         }
     }
 
@@ -255,5 +265,137 @@ class Program
         }
 
         Console.WriteLine($"Found: {books2.Count}");
+    }
+    
+    static void MarkBookAsRead(LibraryContext db)
+    {
+        Console.WriteLine("Mark book as read");
+
+        var book = db.Books.First(b => b.Title == "SQL Antipatterns");
+
+        Console.WriteLine($"State before: {db.Entry(book).State}");
+
+        book.IsRead = true;
+
+        Console.WriteLine($"State after: {db.Entry(book).State}");
+
+        db.SaveChanges();
+    }
+    
+    static void DeleteBook(LibraryContext db)
+    {
+        Console.WriteLine("Delete book");
+
+        var book = db.Books.First(b => b.Title == "The Pragmatic Programmer");
+
+        db.Books.Remove(book);
+        db.SaveChanges();
+
+        var count = db.Books.Count();
+
+        Console.WriteLine($"Remaining books: {count}");
+    }
+    
+    static void AddExistingBook(LibraryContext db)
+    {
+        Console.WriteLine("Add existing book");
+
+        var book = db.Books.First(b => b.Title == "SQL Antipatterns");
+
+        book.IsRead = true;
+
+        db.Books.Add(book);
+        db.SaveChanges();
+    }
+    
+    static void TestLocalDateTime(LibraryContext db)
+    {
+        Console.WriteLine("Test local DateTime");
+
+        var book = new Book
+        {
+            Title = "Test Book",
+            Author = "Test Author",
+            Year = 2026,
+            Pages = 100,
+            Price = 10.00m,
+            IsRead = false,
+            AddedAt = DateTime.Now
+        };
+
+        db.Books.Add(book);
+
+        try
+        {
+            db.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.InnerException?.Message ?? ex.Message);
+            db.ChangeTracker.Clear();
+        }
+    }
+    
+    static void ShowCreateScript(LibraryContext db)
+    {
+        Console.WriteLine("Create script");
+
+        Console.WriteLine(db.Database.GenerateCreateScript());
+    }
+    
+    static void GroupBooksByAuthor(LibraryContext db)
+    {
+        Console.WriteLine("Books grouped by author");
+
+        var authors = db.Books
+            .GroupBy(b => b.Author)
+            .Select(g => new
+            {
+                Author = g.Key,
+                Count = g.Count(),
+                Total = g.Sum(b => b.Price)
+            })
+            .OrderByDescending(a => a.Count)
+            .ToList();
+
+        foreach (var author in authors)
+        {
+            Console.WriteLine($"{author.Author} - {author.Count} - {author.Total}");
+        }
+    }
+    
+    static void ShowQueryString(LibraryContext db)
+    {
+        Console.WriteLine("Query SQL");
+
+        var query = db.Books
+            .Where(b => b.Year > 2005)
+            .OrderBy(b => b.Title);
+
+        Console.WriteLine(query.ToQueryString());
+    }
+    
+    static void CompareTracking(LibraryContext db)
+    {
+        Console.WriteLine("Normal tracking");
+
+        db.ChangeTracker.Clear();
+
+        var books1 = db.Books
+            .OrderBy(b => b.Year)
+            .ToList();
+
+        Console.WriteLine($"Tracked entries: {db.ChangeTracker.Entries().Count()}");
+
+        db.ChangeTracker.Clear();
+
+        Console.WriteLine("No tracking");
+
+        var books2 = db.Books
+            .AsNoTracking()
+            .OrderBy(b => b.Year)
+            .ToList();
+
+        Console.WriteLine($"Tracked entries: {db.ChangeTracker.Entries().Count()}");
     }
 }   
