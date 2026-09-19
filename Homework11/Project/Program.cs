@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Project.Data;
+using Project.Services;
 
 namespace Project;
 
@@ -20,7 +21,7 @@ public class Program
         {
             options.UseNpgsql(connectionString);
         });
-        
+        builder.Services.AddScoped<ITodoService, TodoService>();
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
