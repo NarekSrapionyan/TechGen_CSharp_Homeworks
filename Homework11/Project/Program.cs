@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Project.Data;
+
 namespace Project;
 
 public class Program
@@ -7,12 +10,26 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers();
-
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        
+        var connectionString =
+            builder.Configuration.GetConnectionString("DefaultConnection");
+        
+        builder.Services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseNpgsql(connectionString);
+        });
+        
         var app = builder.Build();
 
-        app.UseHttpsRedirection();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
 
-        app.UseAuthorization();
+        app.UseHttpsRedirection();
 
         app.MapControllers();
 
